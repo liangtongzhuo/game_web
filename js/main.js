@@ -12,12 +12,9 @@ var deltaTime = 0; //距离上次的时间间隔
 
 var jxk;
 
-document.body.onload = game;
-
-function game() {
+document.body.onload = () => {
     init()
     lastTime = Date.now();
-    gameloop()
 }
 
 var bgPic = new Image();
@@ -34,29 +31,23 @@ function init() {
     // can1.addEventListener('mousemove', onMouseMove, false)  
 
     jxk = new Jxk();
+
+    const game = new Game();
+    game.draw = () => {
+        // window.requestAnimFrame(gameloop);
+        var now = Date.now();
+        deltaTime = now - lastTime;
+        lastTime = now;
+
+        // ctx1.clearRect(0, 0, 1000, 1000);
+        ctx1.drawImage(bgPic, 0, 0, 2000, 2000);
+        // ctx1.restore();
+
+        ctx2.clearRect(0, 0, 1000, 1000);
+        jxk.draw();
+
+    } 
 }
 
-function gameloop() {
-    window.requestAnimFrame(gameloop);
-    var now = Date.now();
-    deltaTime = now - lastTime;
-    lastTime = now;
-    
-    // ctx1.clearRect(0, 0, 1000, 1000);
-    ctx1.drawImage(bgPic, 0, 0,2000,2000);
-    // ctx1.restore();
 
-    ctx2.clearRect(0, 0, 1000, 1000);
-    jxk.draw();
-
-
-}
-
-//封装一下动画方法
-window.requestAnimFrame = (function () {
-    return window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame || window.oRequestAnimationFrame || window.msRequestAnimationFrame ||
-        function ( /* function FrameRequestCallback */ callback, /* DOMElement Element */ element) {
-            return window.setTimeout(callback, 1000 / 60);
-        };
-})();
 
