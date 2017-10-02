@@ -10,8 +10,7 @@ var canHeight = 600;
 var lastTime = 0;
 var deltaTime = 0; //距离上次的时间间隔
 
-
-var bgPic = new Image();
+var jxk;
 
 document.body.onload = game;
 
@@ -19,8 +18,10 @@ function game() {
     init()
     lastTime = Date.now();
     gameloop()
-
 }
+
+var bgPic = new Image();
+bgPic.src = "./img/background/bg.jpg";
 
 function init() {
     mx = canWidth * 0.5
@@ -30,13 +31,10 @@ function init() {
     can2 = document.getElementById('canvas2')
     ctx1 = can1.getContext('2d');
     ctx2 = can2.getContext('2d');
+    // can1.addEventListener('mousemove', onMouseMove, false)  
 
-
-    // can1.addEventListener('mousemove', onMouseMove, false)
-
-    // bgPic.src = "./src/background.jpg";
-
-
+    jxk = new Jxk();
+    jxk.init();
 }
 
 function gameloop() {
@@ -44,14 +42,17 @@ function gameloop() {
     var now = Date.now();
     deltaTime = now - lastTime;
     lastTime = now;
+    
+    // ctx1.clearRect(0, 0, 1000, 1000);
+    ctx1.drawImage(bgPic, 0, 0,2000,2000);
+    // ctx1.restore();
 
-    console.log('----------', deltaTime);
+    ctx2.clearRect(0, 0, 1000, 1000);
+    jxk.draw();
+
+
 }
 
-//绘画背景
-function drawBackground() {
-    // ctx2.drawImage(bgPic, 0, 0, canWidth, canHeight);
-}
 
 //封装一下动画方法
 window.requestAnimFrame = (function () {

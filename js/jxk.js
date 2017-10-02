@@ -1,13 +1,16 @@
-var momObj = function () {
+var Jxk = function () {
     this.x;
     this.y;
     this.angle;
 
     this.bodyRightBottom = [];
-
+    this.bodyRightBottomCount = 0;
+    this.time = 0;
+    this.count = 0;
    
 }
-momObj.prototype.init = function () {
+
+Jxk.prototype.init = function () {
 
     for (var i = 0; i < 8; i++) {
         this.bodyRightBottom[i] = new Image();
@@ -15,12 +18,17 @@ momObj.prototype.init = function () {
     }
 
 }
-momObj.prototype.draw = function () {
 
- 
-    //尾巴
-    // ctx1.drawImage(this.momTail[this.momTailCount], -this.momTail[this.momTailCount].width * 0.5 + 30, -this.momTail[this.momTailCount].height * 0.5);
+Jxk.prototype.draw = function () {
 
+    this.time += deltaTime;
+    if (this.time > 150) {
+        this.count = (this.count + 1) % 8;
+        this.time %= 150;
 
-    // ctx1.restore();
+        
+    }
+    ctx2.save();
+    ctx2.drawImage(this.bodyRightBottom[this.count],10,10);
+    ctx2.restore();
 }
