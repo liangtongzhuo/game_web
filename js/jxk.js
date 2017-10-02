@@ -5,10 +5,9 @@ class Jxk  {
         this.angle;
 
         this.bodyRightBottom = []
-        this.bodyRightBottomCount = 0
+        this.bodyount = 0
         this.time = 0
-        this.count = 0
-        
+
         this.init()
     }
 
@@ -19,17 +18,17 @@ class Jxk  {
         }
     }
 
-    draw() {
-        this.time += deltaTime
+    draw(interval) {
+
+        this.time += interval
         if (this.time > 150) {
-            this.count = (this.count + 1) % 8
+            this.bodyount = (this.bodyount + 1) % 8
             this.time %= 150
         }
+
         ctx2.save()
-        ctx2.drawImage(this.bodyRightBottom[this.count], 10, 10)
+        ctx2.drawImage(this.bodyRightBottom[this.bodyount], 10, 10)
         ctx2.restore()
     }
-   
-   
 }
 
