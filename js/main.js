@@ -9,6 +9,8 @@ var canHeight = 600;
 
 var lastTime = 0;
 var deltaTime = 0; //距离上次的时间间隔
+
+
 var bgPic = new Image();
 
 document.body.onload = game;
@@ -30,9 +32,9 @@ function init() {
     ctx2 = can2.getContext('2d');
 
 
-    can1.addEventListener('mousemove', onMouseMove, false)
+    // can1.addEventListener('mousemove', onMouseMove, false)
 
-    bgPic.src = "./src/background.jpg";
+    // bgPic.src = "./src/background.jpg";
 
 
 }
@@ -42,6 +44,8 @@ function gameloop() {
     var now = Date.now();
     deltaTime = now - lastTime;
     lastTime = now;
+
+    console.log('----------', deltaTime);
 }
 
 //绘画背景
