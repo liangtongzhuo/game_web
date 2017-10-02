@@ -34,7 +34,6 @@ function init() {
     // can1.addEventListener('mousemove', onMouseMove, false)  
 
     jxk = new Jxk();
-    jxk.init();
 }
 
 function gameloop() {
@@ -52,7 +51,6 @@ function gameloop() {
 
 
 }
-
 
 //封装一下动画方法
 window.requestAnimFrame = (function () {
