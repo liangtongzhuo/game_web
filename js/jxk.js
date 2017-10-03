@@ -27,7 +27,7 @@ class Jxk  {
         }
 
         ctx.save()
-        ctx.drawImage(this.bodyRightBottom[this.bodyount], 10, 10)
+        ctx.drawImage(this.bodyRightBottom[this.bodyount], 0, 0)
         ctx.restore()
     }
 }

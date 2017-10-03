@@ -1,9 +1,12 @@
-// 瓜
+//游戏
 class Game {
     constructor(canvas) {
         this.canvas = document.querySelector(canvas)
+        this.canvas.width = window.getViewportSize.width
+        this.canvas.height = window.getViewportSize.height
+        
         this.ctx = this.canvas.getContext('2d')
-
+        
         this.time = 0
         this.interval = 0 //距离上次的时间间隔
         this._runloop()
