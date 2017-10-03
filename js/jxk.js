@@ -18,7 +18,7 @@ class Jxk  {
         }
     }
 
-    draw(interval) {
+    draw(interval,ctx) {
 
         this.time += interval
         if (this.time > 150) {
@@ -26,9 +26,9 @@ class Jxk  {
             this.time %= 150
         }
 
-        ctx2.save()
-        ctx2.drawImage(this.bodyRightBottom[this.bodyount], 10, 10)
-        ctx2.restore()
+        ctx.save()
+        ctx.drawImage(this.bodyRightBottom[this.bodyount], 10, 10)
+        ctx.restore()
     }
 }
 
