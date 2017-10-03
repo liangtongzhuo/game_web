@@ -1,23 +1,23 @@
 
-var can1;
-var ctx1;
 
 
 document.body.onload = () => {
     init()
-
-    var bgPic = new Image();
-    bgPic.src = "./img/background/bg.jpg"
-    bgPic.onload = () => {
-        ctx1.drawImage(bgPic, 0, 0, 2000, 2000)
-    }
-
 }
 
 function init() {
 
-    can1 = document.getElementById('canvas1')
-    ctx1 = can1.getContext('2d')
+        // .width = 600;
+    // document.getElementById("canvas").height = 600;  
+    const canvas = document.querySelector('#canvas1')
+    const ctx = canvas.getContext('2d')
+
+    var bgPic = new Image();
+    bgPic.src = "./img/background/bg.jpg"
+    bgPic.onload = () => {
+        ctx.drawImage(bgPic, 0, 0, 2000, 2000)
+    }
+
 
     const jxk = new Jxk()
 
@@ -26,6 +26,7 @@ function init() {
         jxk.draw(interval, ctx)
     }
 }
+
 
 
 
