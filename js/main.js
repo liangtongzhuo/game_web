@@ -19,24 +19,36 @@ function init() {
         }else if (x < hx) {
             hx--
         }
+
+        if (y > hy) {
+            hy++
+        } else if (y < hy) {
+            hy--
+        }        
         ctx.drawImage(bgPic, -hx, -hy)
     }
 
-    document.onmousemove = (event) => {
-        if (window.event) window.event = event;
-        x = window.event.x
-        y = window.event.y
-        console.log('----------', x, y);
+
+    function touches(event) {
+        x = event.changedTouches[0].clientX
+        y = event.changedTouches[0].clientY
+        console.log('----------',x,y);
     }
+
+    document.addEventListener('touchend', touches, false)
+
 
 
     const jxk = new Jxk()
-
     const game = new Game('#canvas2')
     game.draw = (interval, ctx) => {
         jxk.draw(interval, ctx)
     }
 }
+
+
+
+
 
 
 
