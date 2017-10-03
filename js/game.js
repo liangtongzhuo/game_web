@@ -4,37 +4,17 @@ class Game {
         this.canvas = document.querySelector(canvas)
         this.canvas.width = window.getViewportSize.width
         this.canvas.height = window.getViewportSize.height
-        
+
         this.ctx = this.canvas.getContext('2d')
-        
-        this.time = 0
-        this.interval = 0 //距离上次的时间间隔
-        this._runloop()
+
+        this.views = [];
     }
-    draw() {
-    }
-    _runloop() {
+    draw(interval) {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
         
-        const now = Date.now()
-        this.interval = now - this.time
-        this.time = now
-
-        this.draw(this.interval,this.ctx)
-        window.requestAnimFrame(this._runloop.bind(this))
+        if (!this.views.length) return;
+        for (let i = 0; i < this.views.length; i++) {
+            this.views[i].draw(interval, this.ctx);
+        }
     }
 }
-//封装执行动画
-window.requestAnimFrame = (function () {
-    return window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame || window.oRequestAnimationFrame || window.msRequestAnimationFrame ||
-        function ( /* function FrameRequestCallback */ callback, /* DOMElement Element */ element) {
-            return window.setTimeout(callback, 1000 / 60)
-        };
-})();
-//屏幕宽高
-window.getViewportSize = ( function() {
-    return {
-        width: window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth,
-        height: window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight
-    };
-})();
