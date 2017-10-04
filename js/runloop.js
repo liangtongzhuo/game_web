@@ -20,6 +20,7 @@ class Runloop {
     loop(){
     }
 }
+
 //封装执行动画
 window.requestAnimFrame = (function () {
     return window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame || window.oRequestAnimationFrame || window.msRequestAnimationFrame ||

@@ -12,7 +12,7 @@ class Jxk  {
     }
 
     init(){
-        for (var i = 0; i < 8; i++) {
+        for (let i = 0; i < 8; i++) {
             this.bodyRightBottom[i] = new Image()
             this.bodyRightBottom[i].src = './img/jxk/stand/0000' + i + '.png'
         }
