@@ -4,7 +4,11 @@ class Jxk {
         this.y
         this.angle;
 
-        this.bodyRightBottom = []
+        this.zero = []
+        this.one = []
+        this.tow = []
+        this.three = []
+        
         this.bodyount = 0
         this.time = 0
 
@@ -13,8 +17,14 @@ class Jxk {
 
     init() {
         for (let i = 0; i < 8; i++) {
-            this.bodyRightBottom[i] = new Image()
-            this.bodyRightBottom[i].src = './img/jxk/stand/0000' + i + '.png'
+            this.zero[i] = new Image()
+            this.zero[i].src = './img/jxk/stand/0000' + i + '.png'
+            this.one[i] = new Image()
+            this.one[i].src = './img/jxk/stand/0100' + i + '.png'
+            this.tow[i] = new Image()
+            this.tow[i].src = './img/jxk/stand/0200' + i + '.png'
+            this.three[i] = new Image()
+            this.three[i].src = './img/jxk/stand/0300' + i + '.png'
         }
     }
 
@@ -27,7 +37,7 @@ class Jxk {
         }
 
         ctx.save()
-        ctx.drawImage(this.bodyRightBottom[this.bodyount], window.getViewportSize.width / 2 - 25, window.getViewportSize.height / 2 - 80)
+        ctx.drawImage(this.zero[this.bodyount], window.getViewportSize.width / 2 - 25, window.getViewportSize.height / 2 - 80)
         ctx.restore()
     }
 }
