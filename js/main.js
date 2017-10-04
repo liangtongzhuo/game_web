@@ -4,14 +4,13 @@ document.body.onload = () => {
     init()
 }
 
-const game = new Canvas('#canvas2')
+const game = new Game('#canvas2')
 const runloop = Runloop.instance()
 
 
 function init() {
-    const bgPic = new Image()
-    bgPic.src = "./img/background/bg.jpg"
-
+    const mapOne = new MapOne();
+    game.views.push(mapOne)
     const jxk = new Jxk()
     game.views.push(jxk)
     runloop.loop = (interval) => {

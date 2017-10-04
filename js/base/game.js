@@ -1,5 +1,5 @@
 //游戏
-class Canvas {
+class Game {
     constructor(canvas) {
         this.canvas = document.querySelector(canvas)
         this.canvas.width = window.getViewportSize.width
@@ -9,6 +9,7 @@ class Canvas {
 
         this.views = [];
     }
+    
     draw(interval) {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 

@@ -10,6 +10,7 @@ class Runloop {
         this.obj = this.obj || new this(...args)
         return this.obj
     }
+
     _runloop() {
         const now = Date.now()
         this.interval = now - this.time
@@ -17,6 +18,7 @@ class Runloop {
         this.loop(this.interval);
         window.requestAnimFrame(this._runloop.bind(this))
     }
+    
     loop(){
     }
 }
