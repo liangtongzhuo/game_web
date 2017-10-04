@@ -1,4 +1,4 @@
-class Jxk  {
+class Jxk {
     constructor() {
         this.x
         this.y
@@ -11,14 +11,14 @@ class Jxk  {
         this.init()
     }
 
-    init(){
+    init() {
         for (let i = 0; i < 8; i++) {
             this.bodyRightBottom[i] = new Image()
             this.bodyRightBottom[i].src = './img/jxk/stand/0000' + i + '.png'
         }
     }
 
-    draw(interval,ctx) {
+    draw(interval, ctx, x, y) {
 
         this.time += interval
         if (this.time > 150) {
@@ -27,7 +27,7 @@ class Jxk  {
         }
 
         ctx.save()
-        ctx.drawImage(this.bodyRightBottom[this.bodyount], 0, 0)
+        ctx.drawImage(this.bodyRightBottom[this.bodyount], window.getViewportSize.width / 2 - 25, window.getViewportSize.height / 2 - 80)
         ctx.restore()
     }
 }

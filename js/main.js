@@ -19,13 +19,7 @@ function init() {
 }
 
 
-function touches(event) {
-    const x = event.changedTouches[0].clientX
-    const y = event.changedTouches[0].clientY
-    console.log('----------', x, y);
-}
 
-document.addEventListener('touchend', touches, false)
 
 
 
