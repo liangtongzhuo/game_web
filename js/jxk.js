@@ -7,6 +7,11 @@ class Jxk {
         this.one = []
         this.tow = []
         this.three = []
+        this.four = []
+        this.five = []
+        this.six = []
+        this.seven = []
+
         //方向
         this.direction = 0
         //帧数
@@ -26,6 +31,14 @@ class Jxk {
             this.tow[i].src = './img/jxk/stand/0200' + i + '.png'
             this.three[i] = new Image()
             this.three[i].src = './img/jxk/stand/0300' + i + '.png'
+            this.four[i] = new Image()
+            this.four[i].src = './img/jxk/stand/0400' + i + '.png'
+            this.five[i] = new Image()
+            this.five[i].src = './img/jxk/stand/0500' + i + '.png'
+            this.six[i] = new Image()
+            this.six[i].src = './img/jxk/stand/0600' + i + '.png'
+            this.seven[i] = new Image()
+            this.seven[i].src = './img/jxk/stand/0700' + i + '.png'
         }
     }
 
@@ -68,6 +81,14 @@ class Jxk {
             return this.tow[this.bodyCount] 
         } else if (this.direction === 3) {
             return this.three[this.bodyCount] 
+        } else if (this.direction === 4) {
+            return this.four[this.bodyCount]
+        } else if (this.direction === 5) {
+            return this.five[this.bodyCount]
+        } else if (this.direction === 6) {
+            return this.six[this.bodyCount]
+        } else if (this.direction === 6) {
+            return this.seven[this.bodyCount]
         }
 
     }
