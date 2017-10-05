@@ -16,7 +16,7 @@ class MapOne {
 
     draw(interval, ctx, x, y) {
         ctx.save()
-        ctx.drawImage(this.map, -x, -y, this.map.width / 2, this.map.height / 2)
+        ctx.drawImage(this.map, -x, -y)
         ctx.restore()
     }
 }
