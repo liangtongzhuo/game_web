@@ -2,18 +2,20 @@ class Jxk {
     constructor() {
         this.x = 0
         this.y = 0
-
+        //图
         this.zero = []
         this.one = []
         this.tow = []
         this.three = []
-
+        //方向
+        this.direction = 0
+        //帧数
         this.bodyCount = 0
         this.time = 0
 
         this.init()
     }
-
+    //初始化加载
     init() {
         for (let i = 0; i < 8; i++) {
             this.zero[i] = new Image()
@@ -34,9 +36,41 @@ class Jxk {
             this.time %= 150
         }
 
+        this.directionFunction(x, y)
+        const img = this.imgGet()
+        if (!img) return;
         ctx.save()
-        ctx.drawImage(this.zero[this.bodyCount], window.getViewportSize.width / 2 - 25, window.getViewportSize.height / 2 - 80)
+        ctx.drawImage(img, window.getViewportSize.width / 2 - 25, window.getViewportSize.height / 2 - 80)
         ctx.restore()
     }
+    //根据移动坐标定人物方向
+    directionFunction(x, y) {
+        if (x > this.x && y < this.y) {
+            this.direction = 0
+        } else if (x > this.x && y > this.y) {
+            this.direction = 1
+        } else if (x < this.x && y > this.y) {
+            this.direction = 2
+        } else if (x < this.x && y < this.y) {
+            this.direction = 3
+        }
+
+        this.x = x
+        this.y = y
+    }
+    // 根据方向和帧数获得图片
+    imgGet() {
+        if (this.direction === 0) {
+            return this.zero[this.bodyCount] 
+        } else if (this.direction === 1) {
+            return this.one[this.bodyCount] 
+        } else if (this.direction === 2) {
+            return this.tow[this.bodyCount] 
+        } else if (this.direction === 3) {
+            return this.three[this.bodyCount] 
+        }
+
+    }
+
 }
 

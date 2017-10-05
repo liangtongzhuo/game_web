@@ -17,7 +17,7 @@ class Game {
         this._x = 0
         this._y = 0
         //移动速度
-        this.speed = 5
+        this.speed = 2
         document.addEventListener('touchend', this.touches.bind(this), false)
     }
     //触摸调用
