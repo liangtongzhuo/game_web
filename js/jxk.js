@@ -7,9 +7,8 @@ class Jxk {
         this.one = []
         this.tow = []
         this.three = []
-        this.img
 
-        this.bodyount = 0
+        this.bodyCount = 0
         this.time = 0
 
         this.init()
@@ -31,27 +30,12 @@ class Jxk {
     draw(interval, ctx, x, y) {
         this.time += interval
         if (this.time > 150) {
+            this.bodyCount = (this.bodyCount + 1) % 8
             this.time %= 150
-            this.bodyount = (this.bodyount + 1) % 8
-
-            if (x > this.x && y < this.y) {
-                this.img = this.zero[this.bodyount]
-            } else if (x > this.x && y > this.y) {
-                this.img = this.one[this.bodyount]
-            } else if (x < this.x && y > this.y) {
-                this.img = this.tow[this.bodyount]
-            } else if (x < this.x && y < this.y) {
-                this.img = this.three[this.bodyount]
-            }
-            this.x = x
-            this.y = y
-
         }
-        if (!this.img) this.img = this.zero[this.bodyount]
-
 
         ctx.save()
-        ctx.drawImage(this.img, window.getViewportSize.width / 2 - 25, window.getViewportSize.height / 2 - 80)
+        ctx.drawImage(this.zero[this.bodyCount], window.getViewportSize.width / 2 - 25, window.getViewportSize.height / 2 - 80)
         ctx.restore()
     }
 }
