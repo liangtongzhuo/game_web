@@ -14,16 +14,16 @@ class Game {
         this.x = 0
         this.y = 0
         //要移动到的坐标
-        this._x = 0
-        this._y = 0
+        this.xTarget = 0
+        this.yTarget = 0
         //移动速度
         this.speed = 2
         document.addEventListener('touchend', this.touches.bind(this), false)
     }
     //触摸调用
     touches(event) {
-        this._x = this.x + event.changedTouches[0].clientX - window.getViewportSize.width / 2
-        this._y = this.y + event.changedTouches[0].clientY - window.getViewportSize.height / 2
+        this.xTarget = this.x + event.changedTouches[0].clientX - window.getViewportSize.width / 2
+        this.yTarget = this.y + event.changedTouches[0].clientY - window.getViewportSize.height / 2
     }
     //每次循环调用
     draw(interval) {
@@ -41,21 +41,21 @@ class Game {
     }
     //更新位置
     upDataLocation(){
-        const x = this.x - this._x
-        const y = this.y - this._y
+        const x = this.x - this.xTarget
+        const y = this.y - this.yTarget
         if (x > this.speed  && x != 0) {
             this.x -= this.speed 
         } else if (x < -this.speed  && x != 0) {
             this.x += this.speed 
         } else {
-            this.x = this._x
+            this.x = this.xTarget
         }
         if (y > this.speed  && y != 0) {
             this.y -= this.speed 
         } else if (y < -this.speed  && y != 0) {
             this.y += this.speed 
         } else {
-            this.y = this._y
+            this.y = this.yTarget
         }
     }
 }
