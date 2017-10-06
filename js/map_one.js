@@ -1,8 +1,5 @@
 class MapOne {
     constructor() {
-        this.x = 0
-        this.y = 0
-
         this.map
         this.time = 0
 
@@ -16,8 +13,13 @@ class MapOne {
 
     draw(interval, ctx, x, y) {
         ctx.save()
-        ctx.drawImage(this.map, -x, -y)
+        const xy = this.border(x, y)
+        ctx.drawImage(this.map, -xy.x, -xy.y)
         ctx.restore()
+    }
+    //地图边界判断
+    border(x, y) {
+        return { x, y }
     }
 }
 
