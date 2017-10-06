@@ -6,9 +6,7 @@ class Game {
         this.canvas.width = window.getViewportSize.width
         this.canvas.height = window.getViewportSize.height
         this.ctx = this.canvas.getContext('2d')
-        // cahvas 上绘制内容
-        this.views = [];
-
+        //时间间隔
         this.time = 0
         //当前坐标
         this.x = 0
@@ -19,11 +17,18 @@ class Game {
         //移动速度
         this.speed = 2
         document.addEventListener('touchend', this.touches.bind(this), false)
+
+        this.mapOne = new MapOne();
+        this.jxk = new Jxk()
     }
     //触摸调用
     touches(event) {
         this.xTarget = this.x + event.changedTouches[0].clientX - window.getViewportSize.width / 2
         this.yTarget = this.y + event.changedTouches[0].clientY - window.getViewportSize.height / 2
+
+        //jxk 点击的目标
+        this.jxk.xTarget = this.xTarget
+        this.jxk.yTarget = this.yTarget
     }
     //每次循环调用
     draw(interval) {
@@ -34,26 +39,25 @@ class Game {
         }
 
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height)
-        if (!this.views.length) return;
-        for (let i = 0; i < this.views.length; i++) {
-            this.views[i].draw(interval, this.ctx, this.x, this.y)
-        }
+        //绘制
+        this.mapOne.draw(interval, this.ctx, this.x, this.y)
+        this.jxk.draw(interval, this.ctx, this.x, this.y)
     }
     //更新位置
-    upDataLocation(){
+    upDataLocation() {
         const x = this.x - this.xTarget
         const y = this.y - this.yTarget
-        if (x > this.speed  && x != 0) {
-            this.x -= this.speed 
-        } else if (x < -this.speed  && x != 0) {
-            this.x += this.speed 
+        if (x > this.speed && x != 0) {
+            this.x -= this.speed
+        } else if (x < -this.speed && x != 0) {
+            this.x += this.speed
         } else {
             this.x = this.xTarget
         }
-        if (y > this.speed  && y != 0) {
-            this.y -= this.speed 
-        } else if (y < -this.speed  && y != 0) {
-            this.y += this.speed 
+        if (y > this.speed && y != 0) {
+            this.y -= this.speed
+        } else if (y < -this.speed && y != 0) {
+            this.y += this.speed
         } else {
             this.y = this.yTarget
         }

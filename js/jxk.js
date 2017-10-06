@@ -113,8 +113,7 @@ class Jxk {
     }
     // 根据方向和帧数获得图片
     imgGet(x, y) {
-        if (this.x === x && this.y === y){
-            console.log('----------',x,y);
+        if (this.xTarget === x && this.yTarget === y){
             if (this.direction === 0) {
                 this.img = this.zeroStand[this.bodyCount]
             } else if (this.direction === 1) {
