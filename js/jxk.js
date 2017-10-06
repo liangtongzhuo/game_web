@@ -50,47 +50,56 @@ class Jxk {
         }
 
         this.directionFunction(x, y)
-        const img = this.imgGet()
+        const img = this.imgGet(x, y)
+
         if (!img) return;
+
         ctx.save()
         ctx.drawImage(img, window.getViewportSize.width / 2 - 25, window.getViewportSize.height / 2 - 80)
         ctx.restore()
     }
     //根据移动坐标定人物方向
     directionFunction(x, y) {
-        if (x > this.x && y < this.y) {
+        if (x == this.x && y < this.y) {
             this.direction = 0
-        } else if (x > this.x && y > this.y) {
-            this.direction = 1
-        } else if (x < this.x && y > this.y) {
+        } else if (x == this.x && y > this.y) {
+            this.direction = 4
+        } else if (x < this.x && y == this.y) {
+            this.direction = 6
+        } else if (x > this.x && y == this.y) {
             this.direction = 2
-        } else if (x < this.x && y < this.y) {
+        } else if (x > this.x && y < this.y) {
+            this.direction = 1
+        } else if (x > this.x && y > this.y) {
             this.direction = 3
+        } else if (x < this.x && y > this.y) {
+            this.direction = 5
+        } else if (x < this.x && y < this.y) {
+            this.direction = 7
         }
-
-        this.x = x
-        this.y = y
     }
     // 根据方向和帧数获得图片
-    imgGet() {
+    imgGet(x, y) {
+        this.x = x
+        this.y = y
         if (this.direction === 0) {
-            return this.zero[this.bodyCount] 
+            return this.zero[this.bodyCount]
         } else if (this.direction === 1) {
-            return this.one[this.bodyCount] 
+            return this.one[this.bodyCount]
         } else if (this.direction === 2) {
-            return this.tow[this.bodyCount] 
+            return this.tow[this.bodyCount]
         } else if (this.direction === 3) {
-            return this.three[this.bodyCount] 
+            return this.three[this.bodyCount]
         } else if (this.direction === 4) {
             return this.four[this.bodyCount]
         } else if (this.direction === 5) {
             return this.five[this.bodyCount]
         } else if (this.direction === 6) {
             return this.six[this.bodyCount]
-        } else if (this.direction === 6) {
+        } else if (this.direction === 7) {
             return this.seven[this.bodyCount]
         }
-
+       
     }
 
 }
