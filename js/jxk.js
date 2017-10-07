@@ -6,6 +6,12 @@ class Jxk {
         //要移动到的坐标
         this.xTarget = 0
         this.yTarget = 0
+        //当前地图坐标
+        this.xMap = 0
+        this.yMap = 0
+        //地图要移动到的坐标
+        this.xTargetMap = 0
+        this.yTargetMap = 0
         //帧动画 跑
         this.zero = []
         this.one = []
@@ -74,14 +80,17 @@ class Jxk {
             this.sevenStand[i].src = './img/jxk/stand/0700' + i + '.png'
         }
     }
-
+    //事件
+    touches(event) {
+    
+    }
     draw(interval, ctx, x, y) {
         this.time += interval
         if (this.time > 150) {
             this.bodyCount = (this.bodyCount + 1) % 8
             this.time %= 150
         }
-
+        //确定人物方向
         this.directionFunction(x, y)
         this.imgGet(x, y)
 
@@ -93,27 +102,28 @@ class Jxk {
     }
     //根据移动坐标定人物方向
     directionFunction(x, y) {
-        if (x == this.x && y < this.y) {
+        if (x == this.xMap && y < this.yMap) {
             this.direction = 0
-        } else if (x == this.x && y > this.y) {
+        } else if (x == this.xMap && y > this.yMap) {
             this.direction = 4
-        } else if (x < this.x && y == this.y) {
+        } else if (x < this.xMap && y == this.yMap) {
             this.direction = 6
-        } else if (x > this.x && y == this.y) {
+        } else if (x > this.xMap && y == this.yMap) {
             this.direction = 2
-        } else if (x > this.x && y < this.y) {
+        } else if (x > this.xMap && y < this.yMap) {
             this.direction = 1
-        } else if (x > this.x && y > this.y) {
+        } else if (x > this.xMap && y > this.yMap) {
             this.direction = 3
-        } else if (x < this.x && y > this.y) {
+        } else if (x < this.xMap && y > this.yMap) {
             this.direction = 5
-        } else if (x < this.x && y < this.y) {
+        } else if (x < this.xMap && y < this.yMap) {
             this.direction = 7
         }
     }
-    // 根据方向和帧数获得图片
+    //否是跑、方向和帧数获得图片
     imgGet(x, y) {
         if (this.xTarget === x && this.yTarget === y){
+            //站立
             if (this.direction === 0) {
                 this.img = this.zeroStand[this.bodyCount]
             } else if (this.direction === 1) {
@@ -151,8 +161,8 @@ class Jxk {
                 this.img = this.seven[this.bodyCount]
             }
         }
-        this.x = x
-        this.y = y
+        this.xMap = x
+        this.yMap = y
     }
 
 }

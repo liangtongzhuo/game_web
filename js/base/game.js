@@ -15,6 +15,8 @@ class Game {
     //触摸调用
     touches(event) {
         this.mapOne.touches(event)
+        this.jxk.touches(event)
+
         //jxk 要移动到的坐标
         this.jxk.xTarget = this.mapOne.xTarget
         this.jxk.yTarget = this.mapOne.yTarget
