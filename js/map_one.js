@@ -19,6 +19,21 @@ class MapOne {
         this.map = new Image()
         this.map.src = './img/background/bg.jpg'
     }
+    //事件
+    touches(event) {
+        //记录点击的实际位置
+        let x = this.x + event.changedTouches[0].clientX - window.getViewportSize.width / 2
+        let y = this.y + event.changedTouches[0].clientY - window.getViewportSize.height / 2
+
+        //判断地图边界，地图不移动。
+        if (x < 0) x = 0
+        if (x > this.map.width - window.getViewportSize.width) x = this.map.width - window.getViewportSize.width
+        if (y < 0) y = 0
+        if (y > this.map.height - window.getViewportSize.height) y = this.map.height - window.getViewportSize.height
+
+        this.xTarget = x
+        this.yTarget = y
+    }
 
     draw(interval, ctx) {
         this.time += interval
