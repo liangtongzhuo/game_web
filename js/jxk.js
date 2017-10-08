@@ -122,7 +122,7 @@ class Jxk {
     }
     //否是跑、方向和帧数获得图片
     imgGet(x, y) {
-        if (this.xTarget === x && this.yTarget === y){
+        if (this.xTargetMap === x && this.yTargetMap === y){
             //站立
             if (this.direction === 0) {
                 this.img = this.zeroStand[this.bodyCount]

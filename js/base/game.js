@@ -17,9 +17,9 @@ class Game {
         this.mapOne.touches(event)
         this.jxk.touches(event)
 
-        //jxk 要移动到的坐标
-        this.jxk.xTarget = this.mapOne.xTarget
-        this.jxk.yTarget = this.mapOne.yTarget
+        //地图要移动到的坐标
+        this.jxk.xTargetMap = this.mapOne.xTarget
+        this.jxk.yTargetMap = this.mapOne.yTarget
     }
     //每次循环调用
     draw(interval) {
