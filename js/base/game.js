@@ -8,7 +8,7 @@ class Game {
         this.ctx = this.canvas.getContext('2d')
         //绑定触摸事件
         document.addEventListener('touchend', this.touches.bind(this), false)
-        // 地图与人物
+        //地图与人物
         this.mapOne = new MapOne();
         this.jxk = new Jxk()
     }
@@ -16,7 +16,6 @@ class Game {
     touches(event) {
         this.mapOne.touches(event)
         this.jxk.touches(event)
-
         //地图要移动到的坐标
         this.jxk.xTargetMap = this.mapOne.xTarget
         this.jxk.yTargetMap = this.mapOne.yTarget
@@ -25,8 +24,8 @@ class Game {
     draw(interval) {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height)
         //绘制
-        this.mapOne.draw(interval, this.ctx)
-        this.jxk.draw(interval, this.ctx, this.mapOne.x, this.mapOne.y)
+        this.mapOne.draw(interval, this.ctx, this.jxk.runHorizontal, this.jxk.runVertical)
+        
+        this.jxk.draw(interval, this.ctx, this.mapOne.x, this.mapOne.y, this.mapOne.mapHorizontal, this.mapOne.mapVertical)
     }
-
 }

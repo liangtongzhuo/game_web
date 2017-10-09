@@ -1,11 +1,20 @@
 class Jxk {
     constructor() {
+        //宽高
+        this.width = 56
+        this.height = 160
         //当前坐标
-        this.x = 0
-        this.y = 0
+        this.x = (window.getViewportSize.width - this.width) / 2
+        this.y = (window.getViewportSize.height - this.height) / 2
         //要移动到的坐标
-        this.xTarget = 0
-        this.yTarget = 0
+        this.xTarget = (window.getViewportSize.width - this.width) / 2
+        this.yTarget = (window.getViewportSize.height - this.height) / 2
+        //地图边界
+        this.mapHorizontal 
+        this.mapVertical 
+        //走出边界
+        this.runHorizontal = true
+        this.runVertical = true
         //当前地图坐标
         this.xMap = 0
         this.yMap = 0
@@ -37,6 +46,8 @@ class Jxk {
         //帧数
         this.bodyCount = 0
         this.time = 0
+        //速度
+        this.speed = 2
 
         this.init()
     }
@@ -82,47 +93,71 @@ class Jxk {
     }
     //事件
     touches(event) {
-    
+        //记录点击位置
+        this.xTarget = event.changedTouches[0].clientX - this.width / 2
+        this.yTarget = event.changedTouches[0].clientY - this.height / 2
+        // console.log('=========',x,y);
     }
-    draw(interval, ctx, x, y) {
+
+    draw(interval, ctx, x, y, mapHorizontal, mapVertical) {
         this.time += interval
         if (this.time > 150) {
             this.bodyCount = (this.bodyCount + 1) % 8
             this.time %= 150
         }
-        //确定人物方向
+
+        this.mapHorizontal = mapHorizontal
+        this.mapVertical = mapVertical
+
         this.directionFunction(x, y)
         this.imgGet(x, y)
+        this.upLocation()
 
         if (!this.img) return;
 
         ctx.save()
-        ctx.drawImage(this.img, window.getViewportSize.width / 2 - 25, window.getViewportSize.height / 2 - 80)
+        ctx.drawImage(this.img, this.x, this.y)
         ctx.restore()
     }
     //根据移动坐标定人物方向
     directionFunction(x, y) {
-        if (x == this.xMap && y < this.yMap) {
+        let _x, _y
+        //地图边界
+        if (this.mapHorizontal != -1) {
+            x = this.xTarget
+            _x = this.x
+        } else {
+            _x = this.xMap
+        }
+
+        if (this.mapVertical != -1) {
+            y = this.yTarget
+            _y = this.y
+        } else {
+            _y = this.yMap
+        }
+        //方向
+        if (x == _x && y < _y) {
             this.direction = 0
-        } else if (x == this.xMap && y > this.yMap) {
+        } else if (x == _x && y > _y) {
             this.direction = 4
-        } else if (x < this.xMap && y == this.yMap) {
+        } else if (x < _x && y == _y) {
             this.direction = 6
-        } else if (x > this.xMap && y == this.yMap) {
+        } else if (x > _x && y == _y) {
             this.direction = 2
-        } else if (x > this.xMap && y < this.yMap) {
+        } else if (x > _x && y < _y) {
             this.direction = 1
-        } else if (x > this.xMap && y > this.yMap) {
+        } else if (x > _x && y > _y) {
             this.direction = 3
-        } else if (x < this.xMap && y > this.yMap) {
+        } else if (x < _x && y > _y) {
             this.direction = 5
-        } else if (x < this.xMap && y < this.yMap) {
+        } else if (x < _x && y < _y) {
             this.direction = 7
         }
     }
-    //否是跑、方向和帧数获得图片
+    // 判断地图边界,否是跑、方向和帧数获得图片
     imgGet(x, y) {
-        if (this.xTargetMap === x && this.yTargetMap === y){
+        if (this.xTargetMap === x && this.yTargetMap === y) {
             //站立
             if (this.direction === 0) {
                 this.img = this.zeroStand[this.bodyCount]
@@ -141,7 +176,7 @@ class Jxk {
             } else if (this.direction === 7) {
                 this.img = this.sevenStand[this.bodyCount]
             }
-        }else {
+        } else {
             //跑
             if (this.direction === 0) {
                 this.img = this.zero[this.bodyCount]
@@ -164,6 +199,55 @@ class Jxk {
         this.xMap = x
         this.yMap = y
     }
+    //地图到边界才更新人物位置
+    upLocation() {
+        if (this.mapHorizontal != -1) {
+            const x = this.x - this.xTarget
+            //计算移动的速速
+            if (x > this.speed && x != 0) {
+                this.x -= this.speed
+                //更新走出边界
+                if (this.mapHorizontal == 1 && this.x < (window.getViewportSize.width - this.width) / 2) {
+                    this.x = (window.getViewportSize.width - this.width) / 2
+                    this.runHorizontal = true
+                }
+            } else if (x < -this.speed && x != 0) {
+                this.x += this.speed
+                //更新走出边界
+                if (this.x > (this.mapHorizontal == 0 && window.getViewportSize.width - this.width) / 2) {
+                    this.x = (window.getViewportSize.width - this.width) / 2
+                    this.runVertical = true
+                }
+            } else {
+                this.x = this.xTarget
+                //更新走出边界
+                // if (this.x = (window.getViewportSize.width - this.width) / 2) {
+                //     this.mapHorizontal = -1
+                // }
+            }
 
+        }
+      
+        if (this.mapVertical != -1) {
+            const y = this.y - this.yTarget
+            if (y > this.speed && y != 0) {
+                this.y -= this.speed
+                //更新走出边界
+                if (this.mapVertical == 1 && this.y < (window.getViewportSize.height - this.height) / 2) {
+                    this.y = (window.getViewportSize.height - this.height) / 2
+                    this.mapVertical = -1
+                }
+            } else if (y < -this.speed && y != 0) {
+                this.y += this.speed
+                //更新走出边界
+                if (this.mapVertical == 0 && this.y > (window.getViewportSize.height - this.height) / 2) {
+                    this.y = (window.getViewportSize.height - this.height) / 2
+                    this.mapVertical = -1
+                }
+            } else {
+                this.y = this.yTarget
+            }
+        }
+    }
 }
 
