@@ -203,6 +203,7 @@ class Jxk {
     upLocation() {
         if (this.mapHorizontal != -1) {
             const x = this.x - this.xTarget
+            this.runHorizontal = false
             //计算移动的速速
             if (x > this.speed && x != 0) {
                 this.x -= this.speed
@@ -210,20 +211,17 @@ class Jxk {
                 if (this.mapHorizontal == 1 && this.x < (window.getViewportSize.width - this.width) / 2) {
                     this.x = (window.getViewportSize.width - this.width) / 2
                     this.runHorizontal = true
+
                 }
             } else if (x < -this.speed && x != 0) {
                 this.x += this.speed
                 //更新走出边界
                 if (this.x > (this.mapHorizontal == 0 && window.getViewportSize.width - this.width) / 2) {
                     this.x = (window.getViewportSize.width - this.width) / 2
-                    this.runVertical = true
+                    this.runHorizontal = true
                 }
             } else {
                 this.x = this.xTarget
-                //更新走出边界
-                // if (this.x = (window.getViewportSize.width - this.width) / 2) {
-                //     this.mapHorizontal = -1
-                // }
             }
 
         }
@@ -232,17 +230,18 @@ class Jxk {
             const y = this.y - this.yTarget
             if (y > this.speed && y != 0) {
                 this.y -= this.speed
+                this.runVertical = false
                 //更新走出边界
                 if (this.mapVertical == 1 && this.y < (window.getViewportSize.height - this.height) / 2) {
                     this.y = (window.getViewportSize.height - this.height) / 2
-                    this.mapVertical = -1
+                    this.runVertical = true
                 }
             } else if (y < -this.speed && y != 0) {
                 this.y += this.speed
                 //更新走出边界
                 if (this.mapVertical == 0 && this.y > (window.getViewportSize.height - this.height) / 2) {
                     this.y = (window.getViewportSize.height - this.height) / 2
-                    this.mapVertical = -1
+                    this.runVertical = true
                 }
             } else {
                 this.y = this.yTarget

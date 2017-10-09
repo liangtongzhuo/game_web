@@ -14,8 +14,8 @@ class MapOne {
         this.mapHorizontal = -1
         this.mapVertical = -1
         //人物走出边界
-        this.runHorizontal = false
-        this.runVertical = false
+        this.runHorizontal = true
+        this.runVertical = true
         //地图
         this.map
         this.init()
@@ -33,13 +33,16 @@ class MapOne {
 
     }
 
-    draw(interval, ctx, runHorizontal,runVertical ) {
+    draw(interval, ctx, runHorizontal, runVertical) {
+
+        this.runHorizontal = runHorizontal
+        this.runVertical = runVertical
+
         this.time += interval
         if (this.time > 17) {
             this.upDataLocation()
             this.time %= 17
         }
-        console.log('----------', runHorizontal,runVertical);
         ctx.save()
         ctx.drawImage(this.map, -this.x, -this.y)
         ctx.restore()
@@ -49,7 +52,7 @@ class MapOne {
         const x = this.x - this.xTarget
         const y = this.y - this.yTarget
         //计算移动的速速
-        if (!this.runHorizontal) {
+        if (this.runHorizontal) {
             if (x > this.speed && x != 0) {
                 this.x -= this.speed
             } else if (x < -this.speed && x != 0) {
@@ -57,9 +60,10 @@ class MapOne {
             } else {
                 this.x = this.xTarget
             }
+            this.mapHorizontal = -1
         }
         //计算移动的速度
-        if (!this.runVertical) {
+        if (this.runVertical) {
             if (y > this.speed && y != 0) {
                 this.y -= this.speed
             } else if (y < -this.speed && y != 0) {
@@ -67,6 +71,7 @@ class MapOne {
             } else {
                 this.y = this.yTarget
             }
+            this.mapVertical = -1
         }
         //判断是否到边界
         this.isBoundary()
@@ -77,20 +82,19 @@ class MapOne {
         if (this.x < 0) {
             this.x = 0
             this.mapHorizontal = 0
-        } else if (this.x  > this.map.width - window.getViewportSize.width) {
-            this.x  = this.map.width - window.getViewportSize.width
+        } else if (this.x > this.map.width - window.getViewportSize.width) {
+            this.x = this.map.width - window.getViewportSize.width
             this.mapHorizontal = 1
         }
 
-        if (this.y  < 0) {
-            this.y  = 0
+        if (this.y < 0) {
+            this.y = 0
             this.mapVertical = 0
         } else if (this.y > this.map.height - window.getViewportSize.height) {
             this.y = this.map.height - window.getViewportSize.height
             this.mapVertical = 1
         }
-
-      
     }
+
 }
 
