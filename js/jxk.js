@@ -216,13 +216,11 @@ class Jxk {
             } else if (x < -this.speed && x != 0) {
                 this.x += this.speed
                 //更新走出边界
-                if (this.x > (this.mapHorizontal == 0 && window.getViewportSize.width - this.width) / 2) {
+                if (this.mapHorizontal == 0 && this.x >  (window.getViewportSize.width - this.width) / 2) {
                     this.x = (window.getViewportSize.width - this.width) / 2
                     this.runHorizontal = true
                 }
-            } else {
-                this.x = this.xTarget
-            }
+            } 
 
         }
       
@@ -243,9 +241,7 @@ class Jxk {
                     this.y = (window.getViewportSize.height - this.height) / 2
                     this.runVertical = true
                 }
-            } else {
-                this.y = this.yTarget
-            }
+            } 
         }
     }
 }
