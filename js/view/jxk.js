@@ -126,7 +126,7 @@ class Jxk {
         if (this.mapHorizontal != -1) {
             x = this.xTarget
             _x = this.x
-        } else {
+        } else { 
             _x = this.xMap
         }
 
@@ -157,7 +157,8 @@ class Jxk {
     }
     // 判断地图边界,否是跑、方向和帧数获得图片
     imgGet(x, y) {
-        if (this.xTargetMap === x && this.yTargetMap === y) {
+        console.log(this.xTargetMap , x)
+        if (this.xTargetMap === x && this.yTargetMap === y ) {
             //站立
             if (this.direction === 0) {
                 this.img = this.zeroStand[this.bodyCount]
