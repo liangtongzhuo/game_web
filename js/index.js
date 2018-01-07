@@ -3,7 +3,7 @@
 document.body.onload = () => {
     init()
 }
-const game = new Game('#canvas2')
+const game = new Game('#canvas')
 const runloop = Runloop.instance()
 
 function init() {

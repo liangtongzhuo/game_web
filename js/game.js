@@ -8,7 +8,6 @@ class Game {
         this.ctx = this.canvas.getContext('2d')
         //绑定触摸事件
         document.addEventListener('touchend', this.touches.bind(this), false)
-        document.addEventListener('touchend', this.touches.bind(this), false)        
         //地图与人物
         this.mapOne = new MapOne()
         this.jxk = new Jxk()
