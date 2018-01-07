@@ -96,7 +96,6 @@ class Jxk {
         //记录点击位置
         this.xTarget = event.changedTouches[0].clientX - this.width / 2
         this.yTarget = event.changedTouches[0].clientY - this.height / 2
-        // console.log('=========',x,y);
     }
 
     draw(interval, ctx, x, y, mapHorizontal, mapVertical) {
@@ -113,7 +112,7 @@ class Jxk {
         this.imgGet(x, y)
         this.upLocation()
 
-        if (!this.img) return;
+        if (!this.img) return
 
         ctx.save()
         ctx.drawImage(this.img, this.x, this.y)
@@ -157,7 +156,6 @@ class Jxk {
     }
     // 判断地图边界,否是跑、方向和帧数获得图片
     imgGet(x, y) {
-        console.log(this.xTargetMap , x)
         if (this.xTargetMap === x && this.yTargetMap === y ) {
             //站立
             if (this.direction === 0) {
