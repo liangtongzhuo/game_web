@@ -33,9 +33,13 @@
     <script type="text/javascript" src="js/index.js"></script>
 ```
 js/base/runloop.js：主要负责 window.requestAnimationFrame 循环
+
 js/view/map_one.js：地图渲染
+
 js/view/jxk.js：剑侠客渲染
+
 js/game.js：初始化 Canvas ，处理击事件
+
 js/index.js：项目入口
 
 ## __缺点__
@@ -47,6 +51,7 @@ GitHub: https://github.com/liangtongzhuo/game_web
 本想做成联网，大家一起在上面走，想了想，为了代码的干净，还是以后另外开项目再加把。
 
 体验地址：https://liangtongzhuo.github.io/game_web/
-__（在GitHub 打开速度非常慢，加载了50张以上的图，另外记得打开手机调试，并没有适配 PC，获取不到点击事件） __
+
+__在GitHub 打开速度非常慢，加载了50张以上的图，另外记得打开手机调试，并没有适配 PC，获取不到点击事件__
 
 
