@@ -3,7 +3,7 @@
 项目初心为了验证一些对 Canvas 想法。
 项目大量运用 ES6，无 ";" 写法。
 
-<img src="http://ac-2my9ah1h.clouddn.com/6ad02577c3d0b0d6978b.gif">
+<img src="http://file.liangtongzhuo.com/6ad02577c3d0b0d6978b.gif">
 
 # __目录__
 - 文件介绍
